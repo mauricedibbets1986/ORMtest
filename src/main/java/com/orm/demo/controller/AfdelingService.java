@@ -1,26 +1,28 @@
 
 package com.orm.demo.controller;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.orm.demo.domein.Afdeling;
+import com.orm.demo.domein.*;
+import com.orm.demo.controller.*;
+import com.orm.demo.rest.*;
 
 
 @Service
-@Transactional
 public class AfdelingService  {
 	
 	@Autowired
-	AfdelingRepository ar;
+	private AfdelingRepository afdelingRepository;
 	
 	public Afdeling addAfdeling(Afdeling afdeling) {
-		
 		System.out.println("afdeling aangemaakt in database");
-		ar.save(afdeling);
+		afdelingRepository.save(afdeling);
 		return afdeling;		
+	}
+
+	public Afdeling findById(long afdelingId) {
+		return (Afdeling) afdelingRepository.findById(afdelingId);
 	}
 	
 

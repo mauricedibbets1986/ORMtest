@@ -1,7 +1,5 @@
 package com.orm.demo;
 
-import javax.persistence.Entity;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,6 +8,7 @@ public class OrmTestApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(OrmTestApplication.class, args);
+		System.out.println("ORM test runt");
 	}
 
 }
