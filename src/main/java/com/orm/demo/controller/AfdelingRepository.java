@@ -1,14 +1,13 @@
 package com.orm.demo.controller;
 
-import java.util.Optional;
-
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.orm.demo.domein.Afdeling;
+import com.orm.demo.domein.*;
+import com.orm.demo.controller.*;
+import com.orm.demo.rest.*;
+
 
 
 @Repository
-public interface AfdelingRepository<Afdeling> extends CrudRepository<Afdeling, Long> {
-	Afdeling findById(long id);
-}
+public interface AfdelingRepository extends CrudRepository<Afdeling, Long> {}

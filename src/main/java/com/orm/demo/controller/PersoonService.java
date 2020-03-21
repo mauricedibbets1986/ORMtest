@@ -5,8 +5,9 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.orm.demo.domein.Afdeling;
-import com.orm.demo.domein.Persoon;
+import com.orm.demo.domein.*;
+import com.orm.demo.controller.*;
+import com.orm.demo.rest.*;
 
 @Service
 @Transactional
@@ -23,7 +24,6 @@ public class PersoonService {
 		pr.save(persoon);
 		return persoon;		
 	}
-	
 
 	public Persoon addPersoon(Persoon persoon, long afdelingId) {
 		System.out.println("persson aangemaakt in database");

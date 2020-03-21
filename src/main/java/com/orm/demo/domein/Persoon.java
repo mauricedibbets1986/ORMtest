@@ -1,11 +1,16 @@
 package com.orm.demo.domein;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.orm.demo.domein.*;
+import com.orm.demo.controller.*;
+import com.orm.demo.rest.*;
 
 @Entity
 public class Persoon {
@@ -18,7 +23,7 @@ public class Persoon {
 	private String lievelingskleur;
 	
 	@ManyToOne
-	@JoinColumn( name = "afdeling_id" )
+	@JoinColumn( name = "persoon_id" )
 	private Afdeling afdeling;
 
 	public long getId() {

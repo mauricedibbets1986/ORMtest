@@ -8,7 +8,7 @@ public class OrmTestApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(OrmTestApplication.class, args);
-//		System.out.println("ORM test runt");
+		System.out.println("ORM test runt");
 	}
 
 }
