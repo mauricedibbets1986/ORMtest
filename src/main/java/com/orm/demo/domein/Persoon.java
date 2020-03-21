@@ -20,16 +20,7 @@ public class Persoon {
 	@ManyToOne
 	@JoinColumn( name = "afdeling_id" )
 	private Afdeling afdeling;
-	
-	
-	
-	
-	public Afdeling getAfdeling() {
-		return afdeling;
-	}
-	public void setAfdeling(Afdeling afdeling) {
-		this.afdeling = afdeling;
-	}
+
 	public long getId() {
 		return id;
 	}
@@ -47,5 +38,8 @@ public class Persoon {
 	}
 	public void setLievelingskleur(String lievelingskleur) {
 		this.lievelingskleur = lievelingskleur;
+	}
+	public void setAfdeling(Afdeling afdeling) {
+		this.afdeling = afdeling;	
 	}
 }

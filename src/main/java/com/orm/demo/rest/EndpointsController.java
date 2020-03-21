@@ -1,6 +1,7 @@
 package com.orm.demo.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,14 +24,12 @@ public class EndpointsController {
 	@PostMapping("/persoon")
 	public Persoon toevoegenPersoon(@RequestBody Persoon persoon) {
 		return ps.addPersoon(persoon);
-		
 	}
 	
-	@PostMapping("/persoon/{1}")
-	public Persoon toevoegenPersoon2(@RequestBody Persoon persoon) {
-		
-		return ps.addPersoon(persoon);
-		
+	@PostMapping("/persoon/{id}")
+	public Persoon toevoegenPersoonMetAfdeling(@PathVariable(value = "id") long afdelingId,
+	@RequestBody Persoon persoon) {
+		return ps.addPersoon(persoon, afdelingId);
 	}
 	
 	@PostMapping("/afdeling")

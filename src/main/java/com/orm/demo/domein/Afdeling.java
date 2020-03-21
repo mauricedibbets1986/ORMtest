@@ -1,12 +1,16 @@
 package com.orm.demo.domein;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+
 
 @Entity
 public class Afdeling {
@@ -17,11 +21,9 @@ public class Afdeling {
 	
 	private String naam;
 	
-	
-	@OneToMany(mappedBy = "afdeling")
-	private List<Persoon> persoon;
-
-	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="persoon_id")
+	private List<Persoon> persoon = new ArrayList<>();;
 	
 	public List<Persoon> getPersoon() {
 		return persoon;
@@ -38,5 +40,6 @@ public class Afdeling {
 	public void setNaam(String naam) {
 		this.naam = naam;
 	}
+
 
 }

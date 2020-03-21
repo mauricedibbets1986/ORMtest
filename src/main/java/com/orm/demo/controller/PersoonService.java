@@ -15,10 +15,22 @@ public class PersoonService {
 	@Autowired
 	PersoonRepository pr;
 	
+	@Autowired
+	AfdelingService as;
+	
 	public Persoon addPersoon(Persoon persoon) {
-		
 		System.out.println("persson aangemaakt in database");
 		pr.save(persoon);
 		return persoon;		
 	}
+	
+
+	public Persoon addPersoon(Persoon persoon, long afdelingId) {
+		System.out.println("persson aangemaakt in database");
+		pr.save(persoon);
+		persoon.setAfdeling(as.findById(afdelingId));
+		return persoon;	
+	}
+
+
 }
