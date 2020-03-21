@@ -21,16 +21,6 @@ public class Persoon {
 	@JoinColumn( name = "afdeling_id" )
 	private Afdeling afdeling;
 	
-	
-	Persoon(){}
-	
-	Persoon(int a){
-		
-		this.setAfdeling = a;
-	}
-	
-	
-	
 	public Afdeling getAfdeling() {
 		return afdeling;
 	}
