@@ -23,16 +23,16 @@ public class OrmTestApplication {
 /* 
  * Wat Moet de app kunnen?
  * ManyToOne stappen:
- * stap 1 Medewerker aanmaken in html,js html
+ * stap 1 Medewerker aanmaken in html,js html (KLAAR)
  * 			nodig:
- * 			medewerker @Entity
- * 			medewerker repository
- * 			medewerker service
- * 			medewerker endpoint
+ * 			medewerker @Entity (KLAAR)
+ * 			medewerker repository (KLAAR)
+ * 			medewerker service (KLAAR)
+ * 			medewerker endpoint (KLAAR)
  * 			HTML form richting endpoint
  * stap 2 Afdeling aanmaken in html,js
- * stap 3 Bestaande medewerker koppelen aan bestaande afdeling in html,js
- * stap 4 Nieuwe medewerker direct koppelen aan bestaande afdeling in html,js
+ * stap 3 Bestaande medewerker koppelen aan bestaande afdeling in html,js (KLAAR)
+ * stap 4 Nieuwe medewerker direct koppelen aan bestaande afdeling in html,js (KLAAR)
  * 
  * OneToOne stappen:
  * stap 1 Telefoon aanmaken in html,js
