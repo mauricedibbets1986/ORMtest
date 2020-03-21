@@ -9,28 +9,49 @@ import com.orm.demo.domein.*;
 import com.orm.demo.controller.*;
 import com.orm.demo.rest.*;
 
+
 @Service
 @Transactional
 public class PersoonService {
 	
 	@Autowired
-	PersoonRepository pr;
+	PersoonRepository persoonRepository;
 	
 	@Autowired
-	AfdelingService as;
+	AfdelingRepository afdelingRepository;
+	
+	@Autowired
+	AfdelingService afdelingService;
 	
 	public Persoon addPersoon(Persoon persoon) {
-		System.out.println("persson aangemaakt in database");
-		pr.save(persoon);
+		System.out.println("Persoon aangemaakt in database");
+		persoonRepository.save(persoon);
 		return persoon;		
 	}
 
 	public Persoon addPersoon(Persoon persoon, long afdelingId) {
-		System.out.println("persson aangemaakt in database");
-		pr.save(persoon);
-		persoon.setAfdeling(as.findById(afdelingId));
+		System.out.println("Persoon aangemaakt in database");
+		persoonRepository.save(persoon);
+		System.out.println("Persoon gekoppeld aan afdeling");
+		persoon.setAfdeling(afdelingService.findById(afdelingId));
 		return persoon;	
 	}
 
+	public Iterable<Persoon> getAllPersonen() {
+		System.out.println("Alle personen gevonden in Database");
+		return persoonRepository.findAll();
+	}
 
+	public Persoon getPersoonById(long persoonId) {
+		System.out.println("Persoon gevonden in Database");
+		return persoonRepository.findById(persoonId).get();
+	}
+
+	public Persoon updateGebruiker(long persoonId, long afdelingId) {
+		System.out.println("Persoon gekoppeld aan afdeling");
+		Persoon persoon = persoonRepository.findById(persoonId).get();
+		Afdeling afdeling = afdelingRepository.findById(afdelingId);
+		persoon.setAfdeling(afdeling);
+		return persoon;
+	}
 }

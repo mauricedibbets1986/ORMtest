@@ -1,5 +1,7 @@
 package com.orm.demo.domein;
 
+import java.util.Optional;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,10 +22,9 @@ public class Persoon {
 	private long id;
 	
 	private String naam;
-	private String lievelingskleur;
 	
 	@ManyToOne
-	@JoinColumn( name = "persoon_id" )
+	@JoinColumn( name = "afdeling_id" )
 	private Afdeling afdeling;
 
 	public long getId() {
@@ -38,11 +39,9 @@ public class Persoon {
 	public void setNaam(String naam) {
 		this.naam = naam;
 	}
-	public String getLievelingskleur() {
-		return lievelingskleur;
-	}
-	public void setLievelingskleur(String lievelingskleur) {
-		this.lievelingskleur = lievelingskleur;
+	
+	public Afdeling getAfdeling() {
+		return afdeling;
 	}
 	public void setAfdeling(Afdeling afdeling) {
 		this.afdeling = afdeling;	

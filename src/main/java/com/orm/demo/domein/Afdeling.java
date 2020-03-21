@@ -20,7 +20,6 @@ import com.orm.demo.rest.*;
 public class Afdeling {
 	
 	@Id
-	@Column(name = "afbeelding_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
@@ -28,14 +27,14 @@ public class Afdeling {
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="persoon_id")
-	private List<Persoon> persoon = new ArrayList<>();;
+	private List<Persoon> persoon = new ArrayList<>();
 	
-	public List<Persoon> getPersoon() {
-		return persoon;
+	public long getId() {
+		return id;
 	}
 
-	public void setPersoon(List<Persoon> persoon) {
-		this.persoon = persoon;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getNaam() {
@@ -45,6 +44,9 @@ public class Afdeling {
 	public void setNaam(String naam) {
 		this.naam = naam;
 	}
-
+	
+    public void addPersoon(Persoon persoon) {
+        this.persoon.add(persoon);
+    }
 
 }
