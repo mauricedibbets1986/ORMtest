@@ -22,6 +22,13 @@ public class Persoon {
 	private Afdeling afdeling;
 	
 	
+	Persoon(){}
+	
+	Persoon(int a){
+		
+		this.setAfdeling = a;
+	}
+	
 	
 	
 	public Afdeling getAfdeling() {
