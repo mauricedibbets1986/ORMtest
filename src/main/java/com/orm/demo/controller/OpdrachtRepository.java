@@ -10,7 +10,6 @@ import com.orm.demo.controller.*;
 import com.orm.demo.rest.*;
 
 @Repository
-public interface AfdelingRepository extends CrudRepository<Afdeling, Long> {
-
+public interface OpdrachtRepository extends CrudRepository<Opdracht, Long> {
 	
 }

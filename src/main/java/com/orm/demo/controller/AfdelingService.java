@@ -1,4 +1,3 @@
-
 package com.orm.demo.controller;
 
 import java.util.Optional;
@@ -25,7 +24,12 @@ public class AfdelingService  {
 
 	public Afdeling findById(long afdelingId) {
 		System.out.println("Afdeling gevonden in database");
-		return (Afdeling) afdelingRepository.findById(afdelingId);
+		return (Afdeling) afdelingRepository.findById(afdelingId).get();
+	}
+
+	public Iterable<Afdeling> getAllAfdelingen() {
+		System.out.println("Alle afdelingen gevonden in Database");
+		return afdelingRepository.findAll();
 	}
 	
 

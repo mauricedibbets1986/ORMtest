@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "telefoon")
 public class Telefoon {
@@ -19,6 +21,7 @@ public class Telefoon {
 	private String puckCode;
 	
 	@OneToOne(mappedBy = "telefoon")
+	@JsonBackReference
 	private Persoon persoon;
 	
 	

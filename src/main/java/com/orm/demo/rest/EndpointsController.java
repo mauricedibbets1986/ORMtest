@@ -25,6 +25,8 @@ public class EndpointsController {
 	AfdelingService afdelingService;
 	@Autowired
 	TelefoonService telefoonService;
+	@Autowired
+	OpdrachtService opdrachtService;
 	
 	
 	// PERSOON ENDPOINTS
@@ -42,15 +44,22 @@ public class EndpointsController {
 	@PutMapping("/persoon/afdeling/{persoonId}/{afdelingId}")
 	public Persoon updatePersoonAfdeling(@PathVariable(value = "persoonId") String persoonId, 
 	@PathVariable(value = "afdelingId") String afdelingId, 
-	@RequestBody Persoon gebruikerDetails) {
+	@RequestBody Persoon persoon) {
 		return persoonService.updateGebruikerAfdeling(Long.parseLong(persoonId), Long.parseLong(afdelingId));
 	}
 	
 	@PutMapping("/persoon/telefoon/{persoonId}/{telefoonId}")
 	public Persoon updatePersoonTelefoon(@PathVariable(value = "persoonId") String persoonId, 
 	@PathVariable(value = "telefoonId") String telefoonId, 
-	@RequestBody Persoon gebruikerDetails) {
+	@RequestBody Persoon persoon) {
 		return persoonService.updateGebruikerTelefoon(Long.parseLong(persoonId), Long.parseLong(telefoonId));
+	}
+	
+	@PutMapping("/persoon/opdracht/{persoonId}/{opdrachtId}")
+	public Persoon updatePersoonOpdracht(@PathVariable(value = "persoonId") String persoonId, 
+	@PathVariable(value = "opdrachtId") String opdrachtId, 
+	@RequestBody Persoon persoon) {
+		return persoonService.updateGebruikerOpdracht(Long.parseLong(persoonId), Long.parseLong(opdrachtId));
 	}
 	
 	@GetMapping("/persoon")
@@ -71,11 +80,32 @@ public class EndpointsController {
 		
 	}
 	
+	@GetMapping("/afdeling")
+	public Iterable<Afdeling> getAfdelingen() {
+		return afdelingService.getAllAfdelingen();
+	}
+	
 	
 	// TELEFOON ENDPOINTS
 	@PostMapping("/telefoon")
 	public Telefoon addTelefoon(@RequestBody Telefoon telefoon) {
 		return telefoonService.addTelefoon(telefoon);
+	}
+	
+	@GetMapping("/telefoon")
+	public Iterable<Telefoon> getTelefoon() {
+		return telefoonService.getAllTelefoons();
+	}
+	
+	// OPDRACHT ENDPOINTS
+	@PostMapping("/opdracht")
+	public Opdracht addOpdracht(@RequestBody Opdracht opdracht) {
+		return opdrachtService.addOpdracht(opdracht);
+	}
+	
+	@GetMapping("/opdracht")
+	public Iterable<Opdracht> getOpdracht() {
+		return opdrachtService.getAllOpdrachten();
 	}
 
 }

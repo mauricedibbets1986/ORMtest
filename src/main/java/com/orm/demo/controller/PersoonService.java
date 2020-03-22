@@ -20,9 +20,13 @@ public class PersoonService {
 	AfdelingRepository afdelingRepository;
 	@Autowired
 	TelefoonRepository telefoonRepository;
+	@Autowired
+	OpdrachtRepository opdrachtRepository;
 	
 	@Autowired
 	AfdelingService afdelingService;
+	@Autowired
+	OpdrachtService opdrachtService;
 	
 	public Persoon addPersoon(Persoon persoon) {
 		System.out.println("Persoon aangemaakt in database");
@@ -51,8 +55,9 @@ public class PersoonService {
 	public Persoon updateGebruikerAfdeling(long persoonId, long afdelingId) {
 		System.out.println("Persoon gekoppeld aan afdeling");
 		Persoon persoon = persoonRepository.findById(persoonId).get();
-		Afdeling afdeling = afdelingRepository.findById(afdelingId);
+		Afdeling afdeling = afdelingRepository.findById(afdelingId).get();
 		persoon.setAfdeling(afdeling);
+		afdeling.addPersoon(persoon);
 		return persoon;
 	}
 
@@ -62,6 +67,15 @@ public class PersoonService {
 		Telefoon telefoon = telefoonRepository.findById(telefoonId).get();
 		persoon.setTelefoon(telefoon);
 		telefoon.setPersoon(persoon);
+		return persoon;
+	}
+
+	public Persoon updateGebruikerOpdracht(long persoonId, long opdrachtId) {
+		System.out.println("Persoon gekoppeld aan telefoon");
+		Persoon persoon = persoonRepository.findById(persoonId).get();
+		Opdracht opdracht = opdrachtRepository.findById(opdrachtId).get();
+		persoon.setOpdracht(opdracht);
+		opdracht.addPersoon(persoon);
 		return persoon;
 	}
 }

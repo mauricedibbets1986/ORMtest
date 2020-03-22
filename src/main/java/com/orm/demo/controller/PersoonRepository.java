@@ -10,4 +10,6 @@ import org.springframework.stereotype.Repository;
 import com.orm.demo.domein.Persoon;
 
 @Repository
-public interface PersoonRepository extends CrudRepository<Persoon, Long> {}
+public interface PersoonRepository extends CrudRepository<Persoon, Long> {
+	
+}
