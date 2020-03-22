@@ -26,5 +26,10 @@ public class TelefoonService  {
 		System.out.println("Telefoon gevonden in database");
 		return telefoonRepository.findById(telefoonId).get();
 	}
+
+	public Iterable<Telefoon> getAllTelefoons() {
+		System.out.println("Alle telefoons gevonden in Database");
+		return telefoonRepository.findAll();
+	}
 	
 }
