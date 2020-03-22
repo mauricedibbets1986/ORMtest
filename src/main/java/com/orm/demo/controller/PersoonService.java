@@ -16,9 +16,10 @@ public class PersoonService {
 	
 	@Autowired
 	PersoonRepository persoonRepository;
-	
 	@Autowired
 	AfdelingRepository afdelingRepository;
+	@Autowired
+	TelefoonRepository telefoonRepository;
 	
 	@Autowired
 	AfdelingService afdelingService;
@@ -47,11 +48,20 @@ public class PersoonService {
 		return persoonRepository.findById(persoonId).get();
 	}
 
-	public Persoon updateGebruiker(long persoonId, long afdelingId) {
+	public Persoon updateGebruikerAfdeling(long persoonId, long afdelingId) {
 		System.out.println("Persoon gekoppeld aan afdeling");
 		Persoon persoon = persoonRepository.findById(persoonId).get();
 		Afdeling afdeling = afdelingRepository.findById(afdelingId);
 		persoon.setAfdeling(afdeling);
+		return persoon;
+	}
+
+	public Persoon updateGebruikerTelefoon(long persoonId, long telefoonId) {
+		System.out.println("Persoon gekoppeld aan telefoon");
+		Persoon persoon = persoonRepository.findById(persoonId).get();
+		Telefoon telefoon = telefoonRepository.findById(telefoonId).get();
+		persoon.setTelefoon(telefoon);
+		telefoon.setPersoon(persoon);
 		return persoon;
 	}
 }

@@ -23,7 +23,11 @@ public class EndpointsController {
 	PersoonService persoonService;
 	@Autowired
 	AfdelingService afdelingService;
+	@Autowired
+	TelefoonService telefoonService;
 	
+	
+	// PERSOON ENDPOINTS
 	@PostMapping("/persoon")
 	public Persoon addPersoon(@RequestBody Persoon persoon) {
 		return persoonService.addPersoon(persoon);
@@ -36,10 +40,17 @@ public class EndpointsController {
 	}
 	
 	@PutMapping("/persoon/afdeling/{persoonId}/{afdelingId}")
-	public Persoon updatePersoon(@PathVariable(value = "persoonId") String persoonId, 
+	public Persoon updatePersoonAfdeling(@PathVariable(value = "persoonId") String persoonId, 
 	@PathVariable(value = "afdelingId") String afdelingId, 
 	@RequestBody Persoon gebruikerDetails) {
-		return persoonService.updateGebruiker(Long.parseLong(persoonId), Long.parseLong(afdelingId));
+		return persoonService.updateGebruikerAfdeling(Long.parseLong(persoonId), Long.parseLong(afdelingId));
+	}
+	
+	@PutMapping("/persoon/telefoon/{persoonId}/{telefoonId}")
+	public Persoon updatePersoonTelefoon(@PathVariable(value = "persoonId") String persoonId, 
+	@PathVariable(value = "telefoonId") String telefoonId, 
+	@RequestBody Persoon gebruikerDetails) {
+		return persoonService.updateGebruikerTelefoon(Long.parseLong(persoonId), Long.parseLong(telefoonId));
 	}
 	
 	@GetMapping("/persoon")
@@ -52,11 +63,19 @@ public class EndpointsController {
 		return persoonService.getPersoonById(Long.parseLong(persoonId));
 	}
 	
+	
+	// AFDELING ENDPOINTS
 	@PostMapping("/afdeling")
 	public Afdeling addAfdeling(@RequestBody Afdeling afdeling) {
 		return afdelingService.addAfdeling(afdeling);
 		
 	}
 	
+	
+	// TELEFOON ENDPOINTS
+	@PostMapping("/telefoon")
+	public Telefoon addTelefoon(@RequestBody Telefoon telefoon) {
+		return telefoonService.addTelefoon(telefoon);
+	}
 
 }

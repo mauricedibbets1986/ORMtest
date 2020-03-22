@@ -9,12 +9,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import com.orm.demo.domein.*;
 import com.orm.demo.controller.*;
 import com.orm.demo.rest.*;
 
 @Entity
+@Table(name = "persoon")
 public class Persoon {
 	
 	@Id
@@ -24,9 +27,13 @@ public class Persoon {
 	private String naam;
 	
 	@ManyToOne
-	@JoinColumn( name = "afdeling_id" )
+	@JoinColumn( name = "afdeling_id", referencedColumnName = "id" )
 	private Afdeling afdeling;
 
+	@OneToOne
+	@JoinColumn( name = "telefoon_id" )
+	private Telefoon telefoon;
+	
 	public long getId() {
 		return id;
 	}
@@ -45,5 +52,11 @@ public class Persoon {
 	}
 	public void setAfdeling(Afdeling afdeling) {
 		this.afdeling = afdeling;	
+	}
+	public Telefoon getTelefoon() {
+		return telefoon;
+	}
+	public void setTelefoon(Telefoon telefoon) {
+		this.telefoon = telefoon;
 	}
 }
