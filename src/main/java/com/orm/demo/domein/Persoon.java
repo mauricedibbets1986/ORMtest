@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -50,6 +51,10 @@ public class Persoon {
 		joinColumns = @JoinColumn(name = "persoon_id"),
 		inverseJoinColumns = @ JoinColumn(name = "opdracht_id"))
 	private List<Opdracht> opdrachten = new ArrayList<>();
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="maand_id")
+	private List<Maand> maand = new ArrayList<>();
 	
 	public long getId() {
 		return id;
@@ -87,4 +92,12 @@ public class Persoon {
 	public void setOpdracht(Opdracht opdracht) {
 		this.opdrachten.add(opdracht);
 	}
+	
+	public List<Maand> getMaand() {
+		return maand;
+	}
+
+	public void addMaand(Maand maand) {
+        this.maand.add(maand);
+    }
 }

@@ -14,7 +14,6 @@ import com.orm.demo.controller.*;
 import com.orm.demo.rest.*;
 
 
-
 @RestController
 @RequestMapping
 public class EndpointsController {
@@ -27,6 +26,15 @@ public class EndpointsController {
 	TelefoonService telefoonService;
 	@Autowired
 	OpdrachtService opdrachtService;
+	@Autowired
+	MaandService maandService;
+	@Autowired
+	DagService dagService;
+	
+	@Autowired
+	PersoonRepository persoonRepository;
+	private Maand maand;
+	
 	
 	
 	// PERSOON ENDPOINTS
@@ -61,6 +69,7 @@ public class EndpointsController {
 	@RequestBody Persoon persoon) {
 		return persoonService.updateGebruikerOpdracht(Long.parseLong(persoonId), Long.parseLong(opdrachtId));
 	}
+	
 	
 	@GetMapping("/persoon")
 	public Iterable<Persoon> getPersonen() {
@@ -106,6 +115,29 @@ public class EndpointsController {
 	@GetMapping("/opdracht")
 	public Iterable<Opdracht> getOpdracht() {
 		return opdrachtService.getAllOpdrachten();
+	}
+	
+	// MAAND ENDPOINTS
+	@PostMapping("/maand/{maandNr}")
+	public Maand addMaand(@PathVariable(value = "maandNr") int maandNr,
+		@RequestBody Maand maand) {
+		for (Persoon persoon: persoonRepository.findAll()) {
+			maandService.addMaand(maand, maandNr, persoon);
+		}
+		return maand;
+	}
+	
+	@GetMapping("/maand")
+	public Iterable<Maand> getMaand() {
+		return maandService.getAllmaanden();
+	}
+	
+	// DAG ENDPOINTS
+
+	@PutMapping("/dag/{dagId}")
+	public Dag updatePersoonOpdracht(@PathVariable(value = "dagId") String dagId,
+	@RequestBody Dag dagDetails) {
+		return dagService.updateDag(Long.parseLong(dagId), dagDetails);
 	}
 
 }
