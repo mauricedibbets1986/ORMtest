@@ -26,7 +26,11 @@ public class MaandService {
 		return maandRepository.findAll();
 	}
 
-	public Maand maakMaand(Maand maand, int maandNr) {
+	public Maand maakMaand(String maandNaam, int maandNr, Persoon persoon) {
+		Maand maand = new Maand();
+		System.out.println("gebeuert er iets>?");
+		maand.setDeMaand(maandNaam);
+		
 		System.out.println("Maand aangemaakt in database");
 		switch(maandNr) {
 		case 2:
@@ -54,21 +58,15 @@ public class MaandService {
 			}
 			break;
 		}
-		maandRepository.save(maand);
+//		maandRepository.save(maand);
+//		System.out.println("1. maand gesaved" + maand.getDeMaand());
+		persoon.addMaand(maand);
+		persoonRepository.save(persoon);
+		System.out.println("3. persoon gesaved met maand" + persoon.getNaam());
 		return maand;
 	}
 	
-	public void koppelMaand(Maand maand, int maandNr) {
-		Maand nieuwemaand = maakMaand(maand, maandNr);
-		System.out.println("koppelmaand:maandgemaakt");
-		for (Persoon persoon: persoonRepository.findAll()) {
-			persoon.addMaand3(nieuwemaand);
-			persoonRepository.save(persoon);
-			System.out.println("koppelmaand: maand gekoppeld");
-		}
-	}
-	
-}
+
 	
 	public Maand addMaand(Maand maand, int maandNr, Persoon persoon) {
 		System.out.println("Maand aangemaakt in database");

@@ -68,15 +68,6 @@ public class Persoon {
 		this.maand = maand;
 	}
 	
-	public void addMaand3(Maand maand) {
-		Maand januari = new Maand();
-		Maand februari = new Maand();
-		this.maand.add(maand);
-		System.out.println("maand added");
-		this.maand.add(januari);
-		System.out.println("januari adeed");
-		this.maand.add(februari);
-    }
 	public void addMaand(Maand maand) {
 		this.maand.add(maand);
 		System.out.println("2. maand toegevogd aan persoon" + naam);

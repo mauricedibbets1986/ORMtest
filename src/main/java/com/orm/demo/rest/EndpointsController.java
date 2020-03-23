@@ -125,13 +125,11 @@ public class EndpointsController {
 //	}
 	
 	// MAAND ENDPOINTS
-		@PostMapping("/maand/{maandNr}")
-		public Maand addMaand(@PathVariable(value = "maandNr") int maandNr,
-			@RequestBody Maand maand) {
+		@PostMapping("/maand/{maandnaam}/{maandNr}")
+		public void addMaand(@PathVariable(value = "maandnaam") String maandNaam, @PathVariable(value = "maandNr") int maandNr) {
 			for (Persoon persoon: persoonRepository.findAll()) {
-				maandService.addMaand(maand, maandNr, persoon);
+				maandService.maakMaand(maandNaam, maandNr, persoon);
 			}
-			return maand;
 		}
 	
 	@GetMapping("/maand")
