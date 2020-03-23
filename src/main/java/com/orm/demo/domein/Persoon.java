@@ -54,8 +54,33 @@ public class Persoon {
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="maand_id")
-	private List<Maand> maand = new ArrayList<>();
+	private List<Maand> maand = new ArrayList<Maand>();
 	
+	
+
+	
+	
+	public List<Maand> getMaand() {
+		return maand;
+	}
+
+	public void setMaand(List<Maand> maand) {
+		this.maand = maand;
+	}
+	
+	public void addMaand3(Maand maand) {
+		Maand januari = new Maand();
+		Maand februari = new Maand();
+		this.maand.add(maand);
+		System.out.println("maand added");
+		this.maand.add(januari);
+		System.out.println("januari adeed");
+		this.maand.add(februari);
+    }
+	public void addMaand(Maand maand) {
+		this.maand.add(maand);
+    }
+
 	public long getId() {
 		return id;
 	}
@@ -92,12 +117,4 @@ public class Persoon {
 	public void setOpdracht(Opdracht opdracht) {
 		this.opdrachten.add(opdracht);
 	}
-	
-	public List<Maand> getMaand() {
-		return maand;
-	}
-
-	public void addMaand(Maand maand) {
-        this.maand.add(maand);
-    }
 }

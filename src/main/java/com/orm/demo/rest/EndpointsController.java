@@ -33,9 +33,6 @@ public class EndpointsController {
 	
 	@Autowired
 	PersoonRepository persoonRepository;
-	private Maand maand;
-	
-	
 	
 	// PERSOON ENDPOINTS
 	@PostMapping("/persoon")
@@ -119,11 +116,17 @@ public class EndpointsController {
 	
 	// MAAND ENDPOINTS
 	@PostMapping("/maand/{maandNr}")
-	public Maand addMaand(@PathVariable(value = "maandNr") int maandNr,
-		@RequestBody Maand maand) {
-		for (Persoon persoon: persoonRepository.findAll()) {
-			maandService.addMaand(maand, maandNr, persoon);
-		}
+	public Maand addMaand(@PathVariable(value = "maandNr") int maandNr, @RequestBody Maand maand){
+		maandService.koppelMaand(maand, maandNr);
+//		for (Persoon persoon: persoonRepository.findAll()) {
+//			maandService.addMaand(maand, maandNr, persoon);
+//		}
+		return maand;
+	}
+	
+	@PostMapping("/maand")
+	public Maand addMaand2(@RequestBody Maand maand) {
+		maandService.saveMaand2(maand);
 		return maand;
 	}
 	
