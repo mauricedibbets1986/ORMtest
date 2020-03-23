@@ -79,6 +79,7 @@ public class Persoon {
     }
 	public void addMaand(Maand maand) {
 		this.maand.add(maand);
+		System.out.println("2. maand toegevogd aan persoon" + naam);
     }
 
 	public long getId() {
