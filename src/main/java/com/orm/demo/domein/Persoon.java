@@ -36,9 +36,19 @@ public class Persoon {
 	private long id;
 	
 	private String naam;
+	private byte[] datafoto;
 	
+	
+	public byte[] getDatafoto() {
+		return datafoto;
+	}
+	public void setDatafoto(byte[] datafoto) {
+		this.datafoto = datafoto;
+	}
+
 	@ManyToOne
 	@JoinColumn( name = "afdeling_id", referencedColumnName = "id" )
+	@JsonBackReference
 	private Afdeling afdeling;
 
 	@OneToOne
@@ -100,4 +110,5 @@ public class Persoon {
 	public void addMaand(Maand maand) {
         this.maand.add(maand);
     }
+
 }

@@ -1,5 +1,8 @@
 package com.orm.demo.rest;
 
+import java.io.IOException;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -7,7 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.orm.demo.domein.*;
 import com.orm.demo.controller.*;
@@ -80,6 +85,16 @@ public class EndpointsController {
 	public Persoon getPersonen(@PathVariable(value = "id") String persoonId) {
 		return persoonService.getPersoonById(Long.parseLong(persoonId));
 	}
+	
+	@PostMapping("/persoon/{id}/image")
+	public Persoon addPersoonMetAfbeelding(@PathVariable(value = "id") long persoonId, @RequestParam("file") MultipartFile file) throws IOException{
+		Persoon zonderafbeelding = persoonService.getPersoonById(persoonId);
+		System.out.println(zonderafbeelding.getId());
+		zonderafbeelding.setDatafoto(file.getBytes());
+		return persoonService.savePersoon(zonderafbeelding);
+	}
+	
+
 	
 	
 	// AFDELING ENDPOINTS

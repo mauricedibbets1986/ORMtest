@@ -30,7 +30,6 @@ public class Afdeling {
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="persoon_id")
-	@JsonBackReference
 	private List<Persoon> persoon = new ArrayList<>();
 	
 	public long getId() {

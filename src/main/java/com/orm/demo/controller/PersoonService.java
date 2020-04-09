@@ -79,4 +79,9 @@ public class PersoonService {
 		return persoon;
 	}
 
+	public Persoon savePersoon(Persoon zonderafbeelding) {
+		return persoonRepository.save(zonderafbeelding);
+	}
+
+
 }
